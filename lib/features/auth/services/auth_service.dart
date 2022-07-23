@@ -2,11 +2,11 @@
 
 import 'dart:convert';
 
-// import 'package:amazon_clone_tutorial/common/widgets/bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/common/widgets/bottom_bar.dart';
+// import 'package:flutter_application_1/features/home/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_application_1/features/home/screens/home_screen.dart';
 import 'package:flutter_application_1/providers/user_provider.dart';
 import 'package:flutter_application_1/constants/error_handling.dart';
 import 'package:flutter_application_1/constants/global_variables.dart';
@@ -83,8 +83,7 @@ class AuthService {
           await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
           Navigator.pushNamedAndRemoveUntil(
             context,
-            // BottomBar.routeName,
-            HomeScreen.routeName,
+            BottomBar.routeName,
             (route) => false,
           );
         },
@@ -94,7 +93,7 @@ class AuthService {
     }
   }
 
-//   // get user data
+  // get user data
   void getUserData(
     BuildContext context,
   ) async {

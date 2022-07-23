@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/common/widgets/bottom_bar.dart';
 import 'package:flutter_application_1/constants/global_variables.dart';
 import 'package:flutter_application_1/features/auth/screens/auth_screen.dart';
 import 'package:flutter_application_1/features/auth/services/auth_service.dart';
-import 'package:flutter_application_1/features/home/screens/home_screen.dart';
+// import 'package:flutter_application_1/features/home/screens/home_screen.dart';
 import 'package:flutter_application_1/providers/user_provider.dart';
 import 'package:flutter_application_1/router.dart';
 import 'package:provider/provider.dart';
@@ -49,7 +50,7 @@ class _MyAppState extends State<MyApp> {
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
       home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-          ? const HomeScreen()
+          ? const BottomBar()
           : const AuthScreen(),
     );
   }
