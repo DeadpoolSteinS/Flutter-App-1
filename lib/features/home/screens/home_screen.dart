@@ -1,10 +1,10 @@
-// import 'package:amazon_clone_tutorial/features/search/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants/global_variables.dart';
 import 'package:flutter_application_1/features/home/widgets/address_box.dart';
 import 'package:flutter_application_1/features/home/widgets/carousel_image.dart';
 import 'package:flutter_application_1/features/home/widgets/deal_of_day.dart';
 import 'package:flutter_application_1/features/home/widgets/top_categories.dart';
+import 'package:flutter_application_1/features/search/screens/search_screen.dart';
 // import 'package:flutter_application_1/providers/user_provider.dart';
 // import 'package:provider/provider.dart';
 
@@ -17,9 +17,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // void navigateToSearchScreen(String query) {
-  //   Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
-  // }
+  void navigateToSearchScreen(String query) {
+    Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
+  }
 
   // @override
   // Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: BorderRadius.circular(7),
                     elevation: 1,
                     child: TextFormField(
-                      // onFieldSubmitted: navigateToSearchScreen,
+                      onFieldSubmitted: navigateToSearchScreen,
                       decoration: InputDecoration(
                         prefixIcon: InkWell(
                           onTap: () {},
@@ -89,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             width: 1,
                           ),
                         ),
-                        hintText: 'Search Amazon.in',
+                        hintText: 'Search Amazon',
                         hintStyle: const TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 17,
