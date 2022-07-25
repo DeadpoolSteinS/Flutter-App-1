@@ -8,8 +8,6 @@ import 'package:flutter_application_1/features/search/screens/search_screen.dart
 import 'package:flutter_application_1/models/product.dart';
 import 'package:flutter_application_1/providers/user_provider.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
-// import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetailScreen extends StatefulWidget {
@@ -51,12 +49,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
   }
 
-  // void addToCart() {
-  //   productDetailsServices.addToCart(
-  //     context: context,
-  //     product: widget.product,
-  //   );
-  // }
+  void addToCart() {
+    productDetailsServices.addToCart(
+      context: context,
+      product: widget.product,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +111,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             width: 1,
                           ),
                         ),
-                        hintText: 'Search Amazon.in',
+                        hintText: 'Search Amazon',
                         hintStyle: const TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 17,
@@ -227,8 +225,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               padding: const EdgeInsets.all(10),
               child: CustomButton(
                 text: 'Add to Cart',
-                // onTap: addToCart,
-                onTap: () {},
+                onTap: addToCart,
                 color: const Color.fromRGBO(254, 216, 19, 1),
               ),
             ),
