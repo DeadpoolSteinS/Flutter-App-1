@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 // ip is labil
-String uri = 'http://192.168.0.23:3000';
+// String uri = 'http://192.168.0.23:3000';
 // String uri = 'http://localhost:3000';
+// String uri = 'http://amazon-clone-steins.heroku.com';
+String uri = 'https://amazon-clone-steins.herokuapp.com';
 
 class GlobalVariables {
   // COLORS
