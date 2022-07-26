@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/common/widgets/custom_button.dart';
 import 'package:flutter_application_1/common/widgets/custom_textfield.dart';
 import 'package:flutter_application_1/constants/global_variables.dart';
 import 'package:flutter_application_1/constants/utils.dart';
 import 'package:flutter_application_1/features/address/services/address_services.dart';
 import 'package:flutter_application_1/providers/user_provider.dart';
-// import 'package:pay/pay.dart';
 import 'package:provider/provider.dart';
+// import 'package:pay/pay.dart';
 
 class AddressScreen extends StatefulWidget {
   static const String routeName = '/address';
@@ -51,35 +52,35 @@ class _AddressScreenState extends State<AddressScreen> {
     cityController.dispose();
   }
 
-  void onApplePayResult(res) {
-    if (Provider.of<UserProvider>(context, listen: false)
-        .user
-        .address
-        .isEmpty) {
-      addressServices.saveUserAddress(
-          context: context, address: addressToBeUsed);
-    }
-    addressServices.placeOrder(
-      context: context,
-      address: addressToBeUsed,
-      totalSum: double.parse(widget.totalAmount),
-    );
-  }
+  // void onApplePayResult(res) {
+  //   if (Provider.of<UserProvider>(context, listen: false)
+  //       .user
+  //       .address
+  //       .isEmpty) {
+  //     addressServices.saveUserAddress(
+  //         context: context, address: addressToBeUsed);
+  //   }
+  //   addressServices.placeOrder(
+  //     context: context,
+  //     address: addressToBeUsed,
+  //     totalSum: double.parse(widget.totalAmount),
+  //   );
+  // }
 
-  void onGooglePayResult(res) {
-    if (Provider.of<UserProvider>(context, listen: false)
-        .user
-        .address
-        .isEmpty) {
-      addressServices.saveUserAddress(
-          context: context, address: addressToBeUsed);
-    }
-    addressServices.placeOrder(
-      context: context,
-      address: addressToBeUsed,
-      totalSum: double.parse(widget.totalAmount),
-    );
-  }
+  // void onGooglePayResult(res) {
+  //   if (Provider.of<UserProvider>(context, listen: false)
+  //       .user
+  //       .address
+  //       .isEmpty) {
+  //     addressServices.saveUserAddress(
+  //         context: context, address: addressToBeUsed);
+  //   }
+  //   addressServices.placeOrder(
+  //     context: context,
+  //     address: addressToBeUsed,
+  //     totalSum: double.parse(widget.totalAmount),
+  //   );
+  // }
 
   void payPressed(String addressFromProvider) {
     addressToBeUsed = "";
@@ -93,11 +94,23 @@ class _AddressScreenState extends State<AddressScreen> {
       if (_addressFormKey.currentState!.validate()) {
         addressToBeUsed =
             '${flatBuildingController.text}, ${areaController.text}, ${cityController.text} - ${pincodeController.text}';
+        addressServices.saveUserAddress(
+            context: context, address: addressToBeUsed);
+        addressServices.placeOrder(
+          context: context,
+          address: addressToBeUsed,
+          totalSum: double.parse(widget.totalAmount),
+        );
       } else {
         throw Exception('Please enter all the values!');
       }
     } else if (addressFromProvider.isNotEmpty) {
       addressToBeUsed = addressFromProvider;
+      addressServices.placeOrder(
+        context: context,
+        address: addressToBeUsed,
+        totalSum: double.parse(widget.totalAmount),
+      );
     } else {
       showSnackBar(context, 'ERROR');
     }
@@ -105,8 +118,8 @@ class _AddressScreenState extends State<AddressScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // var address = context.watch<UserProvider>().user.address;
-    var address = "Kasuk Baru, Kaur, Bengkulu";
+    var address = context.watch<UserProvider>().user.address;
+    // var address = "Kasuk Baru, Kaur, Bengkulu";
 
     return Scaffold(
       appBar: PreferredSize(
@@ -179,6 +192,13 @@ class _AddressScreenState extends State<AddressScreen> {
                     ),
                     const SizedBox(height: 10),
                   ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: CustomButton(
+                  text: 'Order Now',
+                  onTap: () => payPressed(address),
                 ),
               ),
               // ApplePayButton(

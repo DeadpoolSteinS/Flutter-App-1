@@ -4,6 +4,8 @@
 // import 'package:amazon_clone_tutorial/features/admin/screens/posts_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants/global_variables.dart';
+import 'package:flutter_application_1/features/admin/screens/analytics_screen.dart';
+import 'package:flutter_application_1/features/admin/screens/orders_screen.dart';
 import 'package:flutter_application_1/features/admin/screens/posts_screen.dart';
 
 class AdminScreen extends StatefulWidget {
@@ -20,12 +22,8 @@ class _AdminScreenState extends State<AdminScreen> {
 
   List<Widget> pages = [
     const PostsScreen(),
-    const Center(
-      child: Text('Analytics Page'),
-    ),
-    const Center(
-      child: Text('Cart Page'),
-    ),
+    const AnalyticsScreen(),
+    const OrdersScreen(),
   ];
 
   void updatePage(int page) {
